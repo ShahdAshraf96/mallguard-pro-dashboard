@@ -14,8 +14,8 @@ export const sites: Site[] = [
   },
 ];
 
-export const defaultSiteId = sites[0].id;
+export const defaultSiteId = sites[0]!.id;
 
 export function getSite(siteId: string = defaultSiteId): Site {
-  return sites.find((s) => s.id === siteId) ?? sites[0];
+  return sites.find((s) => s.id === siteId) ?? sites[0]!;
 }

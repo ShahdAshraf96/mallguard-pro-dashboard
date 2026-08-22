@@ -60,12 +60,13 @@ export const reportingNotice =
   "The +151% jump is a reporting change, not a safety collapse — monitor names began being logged in July. Judge by the ratio KPIs, not the raw count.";
 
 const site = getSite();
+const b = (i: number): string => site.buildings[i] ?? `Building ${i + 1}`;
 
 export const violationsByBuilding = [
-  { name: site.buildings[2], value: 242, percent: 39 },
-  { name: site.buildings[0], value: 183, percent: 29 },
-  { name: site.buildings[3], value: 102, percent: 16 },
-  { name: site.buildings[1], value: 94, percent: 15 },
+  { name: b(2), value: 242, percent: 39 },
+  { name: b(0), value: 183, percent: 29 },
+  { name: b(3), value: 102, percent: 16 },
+  { name: b(1), value: 94, percent: 15 },
 ];
 
 export const totalViolations = 625;
@@ -109,18 +110,18 @@ export type BuildingOverview = {
 };
 
 export const mallOverview: BuildingOverview[] = [
-  { building: site.buildings[0], violations: 183, tone: "amber" },
-  { building: site.buildings[1], violations: 94, tone: "green" },
-  { building: site.buildings[2], violations: 242, tone: "red" },
-  { building: site.buildings[3], violations: 102, tone: "amber" },
+  { building: b(0), violations: 183, tone: "amber" },
+  { building: b(1), violations: 94, tone: "green" },
+  { building: b(2), violations: 242, tone: "red" },
+  { building: b(3), violations: 102, tone: "amber" },
 ];
 
 export const recentActivity = [
-  { description: "Opening/Closing violation", building: site.buildings[2], date: "Jul 31", tone: "red" },
-  { description: "Waste at loading dock", building: site.buildings[0], date: "Jul 31", tone: "amber" },
-  { description: "Corridor blocked by display", building: site.buildings[2], date: "Jul 30", tone: "blue" },
-  { description: "Lost property (backpack)", building: site.buildings[1], date: "Jul 30", tone: "green" },
-  { description: "Improper presence, cinema", building: site.buildings[3], date: "Jul 29", tone: "purple" },
+  { description: "Opening/Closing violation", building: b(2), date: "Jul 31", tone: "red" },
+  { description: "Waste at loading dock", building: b(0), date: "Jul 31", tone: "amber" },
+  { description: "Corridor blocked by display", building: b(2), date: "Jul 30", tone: "blue" },
+  { description: "Lost property (backpack)", building: b(1), date: "Jul 30", tone: "green" },
+  { description: "Improper presence, cinema", building: b(3), date: "Jul 29", tone: "purple" },
 ] as const;
 
 export const violationsByType = [
