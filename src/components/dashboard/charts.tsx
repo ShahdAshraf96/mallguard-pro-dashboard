@@ -28,15 +28,15 @@ export function DonutChart({
   total: number;
 }) {
   return (
-    <div className="relative size-[168px] shrink-0">
+    <div className="relative size-[150px] shrink-0">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
             data={data}
             dataKey="value"
             nameKey="name"
-            innerRadius={52}
-            outerRadius={82}
+            innerRadius={46}
+            outerRadius={73}
             paddingAngle={1}
             stroke="none"
             isAnimationActive={false}
@@ -61,16 +61,16 @@ export function DonutLegend({
   data: { name: string; value: number; percent: number }[];
 }) {
   return (
-    <ul className="flex-1 space-y-2.5">
+    <ul className="min-w-0 flex-1 space-y-2.5">
       {data.map((item, i) => (
-        <li key={item.name} className="flex items-center gap-2 text-[13px]">
+        <li key={item.name} className="flex items-center gap-1.5 text-[13px]">
           <span
             className="size-2.5 shrink-0 rounded-full"
             style={{ backgroundColor: donutColors[i % donutColors.length] }}
           />
           <span className="flex-1 truncate text-foreground/80">{item.name}</span>
           <span className="font-semibold">{item.percent}%</span>
-          <span className="w-12 text-right text-muted-foreground">({item.value})</span>
+          <span className="shrink-0 text-right text-muted-foreground">({item.value})</span>
         </li>
       ))}
     </ul>
