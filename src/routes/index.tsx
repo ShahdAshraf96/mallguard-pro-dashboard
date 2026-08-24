@@ -70,7 +70,7 @@ function Dashboard() {
 
       <div className="mt-5 grid grid-cols-4 gap-5">
         <Panel title="Violations by Building">
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col items-center gap-4">
             <DonutChart data={violationsByBuilding} total={totalViolations} />
             <DonutLegend data={violationsByBuilding} />
           </div>

@@ -61,7 +61,7 @@ export function DonutLegend({
   data: { name: string; value: number; percent: number }[];
 }) {
   return (
-    <ul className="min-w-0 flex-1 space-y-2.5">
+    <ul className="w-full min-w-0 flex-1 space-y-2.5">
       {data.map((item, i) => (
         <li key={item.name} className="flex items-center gap-1.5 text-[13px]">
           <span
