@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { StubPage } from "@/components/layout/StubPage";
 
-export const Route = createFileRoute("/violations")({
+export const Route = createFileRoute("/violations/")({
   head: () => ({
     meta: [
       { title: "All Violations — MallGuard Pro" },

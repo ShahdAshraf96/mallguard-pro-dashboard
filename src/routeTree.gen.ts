@@ -10,11 +10,95 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ImportRouteImport } from './routes/import'
+import { Route as MapRouteImport } from './routes/map'
+import { Route as BuildingsBuildingRouteImport } from './routes/buildings.$building'
+import { Route as IncidentsIndexRouteImport } from './routes/incidents.index'
+import { Route as IncidentsAnalyticsRouteImport } from './routes/incidents.analytics'
+import { Route as IncidentsNewRouteImport } from './routes/incidents.new'
+import { Route as ReportsBuildingsRouteImport } from './routes/reports.buildings'
+import { Route as ReportsMonthlyRouteImport } from './routes/reports.monthly'
+import { Route as ReportsPartiesRouteImport } from './routes/reports.parties'
+import { Route as SettingsIndexRouteImport } from './routes/settings.index'
+import { Route as SettingsLanguageRouteImport } from './routes/settings.language'
+import { Route as SettingsUsersRouteImport } from './routes/settings.users'
+import { Route as ViolationsIndexRouteImport } from './routes/violations.index'
+import { Route as ViolationsAnalyticsRouteImport } from './routes/violations.analytics'
 import { Route as ViolationsNewRouteImport } from './routes/violations.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImportRoute = ImportRouteImport.update({
+  id: '/import',
+  path: '/import',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BuildingsBuildingRoute = BuildingsBuildingRouteImport.update({
+  id: '/buildings/$building',
+  path: '/buildings/$building',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IncidentsIndexRoute = IncidentsIndexRouteImport.update({
+  id: '/incidents/',
+  path: '/incidents/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IncidentsAnalyticsRoute = IncidentsAnalyticsRouteImport.update({
+  id: '/incidents/analytics',
+  path: '/incidents/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IncidentsNewRoute = IncidentsNewRouteImport.update({
+  id: '/incidents/new',
+  path: '/incidents/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsBuildingsRoute = ReportsBuildingsRouteImport.update({
+  id: '/reports/buildings',
+  path: '/reports/buildings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsMonthlyRoute = ReportsMonthlyRouteImport.update({
+  id: '/reports/monthly',
+  path: '/reports/monthly',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsPartiesRoute = ReportsPartiesRouteImport.update({
+  id: '/reports/parties',
+  path: '/reports/parties',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsIndexRoute = SettingsIndexRouteImport.update({
+  id: '/settings/',
+  path: '/settings/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsLanguageRoute = SettingsLanguageRouteImport.update({
+  id: '/settings/language',
+  path: '/settings/language',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsUsersRoute = SettingsUsersRouteImport.update({
+  id: '/settings/users',
+  path: '/settings/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ViolationsIndexRoute = ViolationsIndexRouteImport.update({
+  id: '/violations/',
+  path: '/violations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ViolationsAnalyticsRoute = ViolationsAnalyticsRouteImport.update({
+  id: '/violations/analytics',
+  path: '/violations/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ViolationsNewRoute = ViolationsNewRouteImport.update({
@@ -25,28 +109,133 @@ const ViolationsNewRoute = ViolationsNewRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/import': typeof ImportRoute
+  '/map': typeof MapRoute
+  '/buildings/$building': typeof BuildingsBuildingRoute
+  '/incidents/analytics': typeof IncidentsAnalyticsRoute
+  '/incidents/new': typeof IncidentsNewRoute
+  '/reports/buildings': typeof ReportsBuildingsRoute
+  '/reports/monthly': typeof ReportsMonthlyRoute
+  '/reports/parties': typeof ReportsPartiesRoute
+  '/settings/language': typeof SettingsLanguageRoute
+  '/settings/users': typeof SettingsUsersRoute
+  '/violations/analytics': typeof ViolationsAnalyticsRoute
   '/violations/new': typeof ViolationsNewRoute
+  '/incidents/': typeof IncidentsIndexRoute
+  '/settings/': typeof SettingsIndexRoute
+  '/violations/': typeof ViolationsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/import': typeof ImportRoute
+  '/map': typeof MapRoute
+  '/buildings/$building': typeof BuildingsBuildingRoute
+  '/incidents/analytics': typeof IncidentsAnalyticsRoute
+  '/incidents/new': typeof IncidentsNewRoute
+  '/reports/buildings': typeof ReportsBuildingsRoute
+  '/reports/monthly': typeof ReportsMonthlyRoute
+  '/reports/parties': typeof ReportsPartiesRoute
+  '/settings/language': typeof SettingsLanguageRoute
+  '/settings/users': typeof SettingsUsersRoute
+  '/violations/analytics': typeof ViolationsAnalyticsRoute
   '/violations/new': typeof ViolationsNewRoute
+  '/incidents': typeof IncidentsIndexRoute
+  '/settings': typeof SettingsIndexRoute
+  '/violations': typeof ViolationsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/import': typeof ImportRoute
+  '/map': typeof MapRoute
+  '/buildings/$building': typeof BuildingsBuildingRoute
+  '/incidents/analytics': typeof IncidentsAnalyticsRoute
+  '/incidents/new': typeof IncidentsNewRoute
+  '/reports/buildings': typeof ReportsBuildingsRoute
+  '/reports/monthly': typeof ReportsMonthlyRoute
+  '/reports/parties': typeof ReportsPartiesRoute
+  '/settings/language': typeof SettingsLanguageRoute
+  '/settings/users': typeof SettingsUsersRoute
+  '/violations/analytics': typeof ViolationsAnalyticsRoute
   '/violations/new': typeof ViolationsNewRoute
+  '/incidents/': typeof IncidentsIndexRoute
+  '/settings/': typeof SettingsIndexRoute
+  '/violations/': typeof ViolationsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/violations/new'
+  fullPaths:
+    | '/'
+    | '/import'
+    | '/map'
+    | '/buildings/$building'
+    | '/incidents/analytics'
+    | '/incidents/new'
+    | '/reports/buildings'
+    | '/reports/monthly'
+    | '/reports/parties'
+    | '/settings/language'
+    | '/settings/users'
+    | '/violations/analytics'
+    | '/violations/new'
+    | '/incidents/'
+    | '/settings/'
+    | '/violations/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/violations/new'
-  id: '__root__' | '/' | '/violations/new'
+  to:
+    | '/'
+    | '/import'
+    | '/map'
+    | '/buildings/$building'
+    | '/incidents/analytics'
+    | '/incidents/new'
+    | '/reports/buildings'
+    | '/reports/monthly'
+    | '/reports/parties'
+    | '/settings/language'
+    | '/settings/users'
+    | '/violations/analytics'
+    | '/violations/new'
+    | '/incidents'
+    | '/settings'
+    | '/violations'
+  id:
+    | '__root__'
+    | '/'
+    | '/import'
+    | '/map'
+    | '/buildings/$building'
+    | '/incidents/analytics'
+    | '/incidents/new'
+    | '/reports/buildings'
+    | '/reports/monthly'
+    | '/reports/parties'
+    | '/settings/language'
+    | '/settings/users'
+    | '/violations/analytics'
+    | '/violations/new'
+    | '/incidents/'
+    | '/settings/'
+    | '/violations/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ImportRoute: typeof ImportRoute
+  MapRoute: typeof MapRoute
+  BuildingsBuildingRoute: typeof BuildingsBuildingRoute
+  IncidentsAnalyticsRoute: typeof IncidentsAnalyticsRoute
+  IncidentsNewRoute: typeof IncidentsNewRoute
+  ReportsBuildingsRoute: typeof ReportsBuildingsRoute
+  ReportsMonthlyRoute: typeof ReportsMonthlyRoute
+  ReportsPartiesRoute: typeof ReportsPartiesRoute
+  SettingsLanguageRoute: typeof SettingsLanguageRoute
+  SettingsUsersRoute: typeof SettingsUsersRoute
+  ViolationsAnalyticsRoute: typeof ViolationsAnalyticsRoute
   ViolationsNewRoute: typeof ViolationsNewRoute
+  IncidentsIndexRoute: typeof IncidentsIndexRoute
+  SettingsIndexRoute: typeof SettingsIndexRoute
+  ViolationsIndexRoute: typeof ViolationsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -56,6 +245,104 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/import': {
+      id: '/import'
+      path: '/import'
+      fullPath: '/import'
+      preLoaderRoute: typeof ImportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/buildings/$building': {
+      id: '/buildings/$building'
+      path: '/buildings/$building'
+      fullPath: '/buildings/$building'
+      preLoaderRoute: typeof BuildingsBuildingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/incidents/': {
+      id: '/incidents/'
+      path: '/incidents'
+      fullPath: '/incidents/'
+      preLoaderRoute: typeof IncidentsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/incidents/analytics': {
+      id: '/incidents/analytics'
+      path: '/incidents/analytics'
+      fullPath: '/incidents/analytics'
+      preLoaderRoute: typeof IncidentsAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/incidents/new': {
+      id: '/incidents/new'
+      path: '/incidents/new'
+      fullPath: '/incidents/new'
+      preLoaderRoute: typeof IncidentsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports/buildings': {
+      id: '/reports/buildings'
+      path: '/reports/buildings'
+      fullPath: '/reports/buildings'
+      preLoaderRoute: typeof ReportsBuildingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports/monthly': {
+      id: '/reports/monthly'
+      path: '/reports/monthly'
+      fullPath: '/reports/monthly'
+      preLoaderRoute: typeof ReportsMonthlyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports/parties': {
+      id: '/reports/parties'
+      path: '/reports/parties'
+      fullPath: '/reports/parties'
+      preLoaderRoute: typeof ReportsPartiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings/': {
+      id: '/settings/'
+      path: '/settings'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof SettingsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings/language': {
+      id: '/settings/language'
+      path: '/settings/language'
+      fullPath: '/settings/language'
+      preLoaderRoute: typeof SettingsLanguageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings/users': {
+      id: '/settings/users'
+      path: '/settings/users'
+      fullPath: '/settings/users'
+      preLoaderRoute: typeof SettingsUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/violations/': {
+      id: '/violations/'
+      path: '/violations'
+      fullPath: '/violations/'
+      preLoaderRoute: typeof ViolationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/violations/analytics': {
+      id: '/violations/analytics'
+      path: '/violations/analytics'
+      fullPath: '/violations/analytics'
+      preLoaderRoute: typeof ViolationsAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/violations/new': {
@@ -70,7 +357,21 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ImportRoute: ImportRoute,
+  MapRoute: MapRoute,
+  BuildingsBuildingRoute: BuildingsBuildingRoute,
+  IncidentsAnalyticsRoute: IncidentsAnalyticsRoute,
+  IncidentsNewRoute: IncidentsNewRoute,
+  ReportsBuildingsRoute: ReportsBuildingsRoute,
+  ReportsMonthlyRoute: ReportsMonthlyRoute,
+  ReportsPartiesRoute: ReportsPartiesRoute,
+  SettingsLanguageRoute: SettingsLanguageRoute,
+  SettingsUsersRoute: SettingsUsersRoute,
+  ViolationsAnalyticsRoute: ViolationsAnalyticsRoute,
   ViolationsNewRoute: ViolationsNewRoute,
+  IncidentsIndexRoute: IncidentsIndexRoute,
+  SettingsIndexRoute: SettingsIndexRoute,
+  ViolationsIndexRoute: ViolationsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
