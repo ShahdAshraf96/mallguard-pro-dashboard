@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
+  AlertTriangle,
   Building2,
   ChevronDown,
   ChevronLeft,
@@ -8,8 +9,6 @@ import {
   LayoutDashboard,
   MapPin,
   Settings,
-  Shield,
-  TriangleAlert,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -47,7 +46,7 @@ export function AppSidebar({
     },
     {
       label: "Incidents",
-      icon: TriangleAlert,
+      icon: AlertTriangle,
       children: [
         { label: "All Incidents", to: "/incidents" },
         { label: "Add New Incident", to: "/incidents/new" },
@@ -94,94 +93,101 @@ export function AppSidebar({
         collapsed ? "w-[76px]" : "w-[235px]",
       )}
     >
-      <div className="flex items-center gap-3 px-5 py-5">
-        <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand text-brand-foreground">
-          <Shield className="size-5" />
-        </span>
+      <div className="flex items-center gap-3 px-5 py-4">
+        <img
+          src="/tmg-logo.png"
+          alt="TMG"
+          className="h-[28px] w-auto shrink-0"
+        />
         {!collapsed && (
           <div className="min-w-0">
-            <div className="truncate text-[15px] font-semibold leading-tight">MallGuard Pro</div>
-            <div className="truncate text-[11px] text-sidebar-muted">
+            <div className="truncate text-[15px] font-semibold leading-tight">
+              MallGuard Pro
+            </div>
+            <div className="truncate text-[9.5px] text-sidebar-muted">
               Violations &amp; Incidents Management
             </div>
           </div>
         )}
       </div>
 
-      <nav className="flex-1 overflow-y-auto px-3 pb-4">
-        {items.map((item) => {
-          const Icon = item.icon;
-          const isActive = item.to ? pathname === item.to : false;
-          const childActive = item.children?.some((c) => pathname === c.to);
+      <nav className="flex-1 overflow-visible px-3 pb-2">
+        <div className="space-y-2">
+          {items.map((item) => {
+            const Icon = item.icon;
+            const isActive = item.to ? pathname === item.to : false;
+            const childActive = item.children?.some((c) => pathname === c.to);
 
-          if (item.to) {
+            if (item.to) {
+              return (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  className={cn(
+                    "flex h-[34px] items-center gap-3 rounded-[9px] px-3 text-[12.5px] font-medium transition-colors",
+                    isActive
+                      ? "mx-3 w-[calc(100%-24px)] bg-[#2563eb] text-brand-foreground"
+                      : "text-sidebar-foreground/85 hover:bg-white/8",
+                  )}
+                >
+                  <Icon className="size-4 shrink-0" />
+                  {!collapsed && <span className="truncate">{item.label}</span>}
+                </Link>
+              );
+            }
+
+            const expanded = open[item.label] ?? false;
             return (
-              <Link
-                key={item.label}
-                to={item.to}
-                className={cn(
-                  "mb-1 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-                  isActive
-                    ? "bg-brand text-brand-foreground"
-                    : "text-sidebar-foreground/85 hover:bg-white/8",
+              <div key={item.label} className="space-y-0.5">
+                <button
+                  type="button"
+                  onClick={() => setOpen((o) => ({ ...o, [item.label]: !expanded }))}
+                  className={cn(
+                    "flex h-[34px] w-full items-center gap-3 rounded-[9px] px-3 text-[12.5px] font-medium transition-colors",
+                    childActive
+                      ? "mx-3 w-[calc(100%-24px)] bg-[#2563eb] text-brand-foreground"
+                      : "text-sidebar-foreground/85 hover:bg-white/8",
+                  )}
+                >
+                  <Icon className="size-4 shrink-0" />
+                  {!collapsed && (
+                    <>
+                      <span className="flex-1 truncate text-left">{item.label}</span>
+                      <ChevronDown
+                        className={cn(
+                          "size-4 transition-transform",
+                          expanded ? "rotate-180" : "rotate-0",
+                        )}
+                      />
+                    </>
+                  )}
+                </button>
+                {!collapsed && expanded && (
+                  <div className="space-y-0.5">
+                    {item.children!.map((child) => (
+                      <Link
+                        key={child.to}
+                        to={child.to}
+                        className={cn(
+                          "flex h-[27px] items-center rounded-lg pl-10 pr-3 text-[11px] transition-colors",
+                          pathname === child.to
+                            ? "bg-[#2563eb] text-brand-foreground"
+                            : "text-[#9fb4cf] hover:text-white",
+                        )}
+                      >
+                        <span className="truncate">{child.label}</span>
+                      </Link>
+                    ))}
+                  </div>
                 )}
-              >
-                <Icon className="size-[18px] shrink-0" />
-                {!collapsed && <span className="truncate">{item.label}</span>}
-              </Link>
+              </div>
             );
-          }
-
-          const expanded = open[item.label] ?? false;
-          return (
-            <div key={item.label} className="mb-1">
-              <button
-                type="button"
-                onClick={() => setOpen((o) => ({ ...o, [item.label]: !expanded }))}
-                className={cn(
-                  "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
-                  childActive
-                    ? "text-sidebar-foreground"
-                    : "text-sidebar-foreground/85 hover:bg-white/8",
-                )}
-              >
-                <Icon className="size-[18px] shrink-0" />
-                {!collapsed && (
-                  <>
-                    <span className="flex-1 truncate text-left">{item.label}</span>
-                    <ChevronDown
-                      className={cn(
-                        "size-4 transition-transform",
-                        expanded ? "rotate-180" : "rotate-0",
-                      )}
-                    />
-                  </>
-                )}
-              </button>
-              {!collapsed && expanded && (
-                <div className="mt-0.5 space-y-0.5">
-                  {item.children!.map((child) => (
-                    <Link
-                      key={child.to}
-                      to={child.to}
-                      className={cn(
-                        "flex items-center gap-2 rounded-lg py-2 pl-11 pr-3 text-[13px] transition-colors",
-                        pathname === child.to
-                          ? "bg-brand text-brand-foreground"
-                          : "text-sidebar-muted hover:text-sidebar-foreground",
-                      )}
-                    >
-                      <span className="truncate">{child.label}</span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          );
-        })}
+          })}
+        </div>
       </nav>
 
-      <div className="p-3">
+      <div className="px-3 pb-2 pt-1">
+        <div className="px-3 pb-2 text-[9px] text-[#5f7799]">Talaat Moustafa Group</div>
         <button
           type="button"
           onClick={onToggleCollapse}
