@@ -163,3 +163,68 @@ export const violationTypes = [
 export const notificationCount = 5;
 
 export const currentUser = { name: "Shahd", role: "Admin" };
+
+/* ---------------- Interactive map ---------------- */
+
+const buildingCode = (name: string) => name.trim().slice(-1).toUpperCase();
+
+export type MapBuilding = {
+  id: string;
+  name: string;
+  code: string;
+  /** percentage box within the map canvas */
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+};
+
+const buildingBoxes = [
+  { x: 8, y: 12, w: 36, h: 34 },
+  { x: 52, y: 10, w: 38, h: 30 },
+  { x: 10, y: 54, w: 40, h: 34 },
+  { x: 58, y: 50, w: 32, h: 38 },
+];
+
+export const mapBuildings: MapBuilding[] = getSite().buildings.map((name, i) => ({
+  id: `b-${i}`,
+  name,
+  code: buildingCode(name),
+  ...(buildingBoxes[i % buildingBoxes.length] as { x: number; y: number; w: number; h: number }),
+}));
+
+export type MapCamera = {
+  id: string;
+  building: string;
+  x: number;
+  y: number;
+  violations: number;
+};
+
+const cameraSeeds = [
+  { code: "C", suffix: "9240", x: 26, y: 66, violations: 47 },
+  { code: "C", suffix: "9417", x: 38, y: 78, violations: 30 },
+  { code: "D", suffix: "9213", x: 72, y: 64, violations: 27 },
+  { code: "B", suffix: "9201", x: 68, y: 22, violations: 25 },
+  { code: "C", suffix: "9397", x: 18, y: 80, violations: 23 },
+  { code: "A", suffix: "9108", x: 20, y: 24, violations: 14 },
+  { code: "A", suffix: "9132", x: 34, y: 36, violations: 11 },
+  { code: "B", suffix: "9244", x: 82, y: 30, violations: 7 },
+  { code: "D", suffix: "9256", x: 84, y: 78, violations: 5 },
+  { code: "A", suffix: "9171", x: 12, y: 40, violations: 2 },
+];
+
+export const mapCameras: MapCamera[] = cameraSeeds.map((c) => {
+  const building = mapBuildings.find((b) => b.code === c.code) ?? mapBuildings[0]!;
+  return {
+    id: `Mall${building.code}-${c.suffix}`,
+    building: building.name,
+    x: c.x,
+    y: c.y,
+    violations: c.violations,
+  };
+});
+
+export const topCameras = [...mapCameras]
+  .sort((a, b) => b.violations - a.violations)
+  .slice(0, 5);
