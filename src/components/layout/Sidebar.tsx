@@ -93,7 +93,7 @@ export function AppSidebar({
         collapsed ? "w-[76px]" : "w-[235px]",
       )}
     >
-      <div className="flex items-center gap-2.5 px-4 py-4">
+      <div className="flex min-w-0 items-center gap-2.5 px-4 py-4">
         <img
           src="/tmg-logo.png"
           alt="TMG"
