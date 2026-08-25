@@ -93,7 +93,7 @@ export function AppSidebar({
         collapsed ? "w-[76px]" : "w-[235px]",
       )}
     >
-      <div className="flex items-center gap-3 px-5 py-4">
+      <div className="flex items-center gap-2.5 px-4 py-4">
         <img
           src="/tmg-logo.png"
           alt="TMG"
@@ -104,7 +104,7 @@ export function AppSidebar({
             <div className="truncate text-[15px] font-semibold leading-tight">
               MallGuard Pro
             </div>
-            <div className="truncate text-[9.5px] text-sidebar-muted">
+            <div className="whitespace-normal text-[9.5px] leading-tight text-sidebar-muted">
               Violations &amp; Incidents Management
             </div>
           </div>
